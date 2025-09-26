@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>testdata_v1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>From the perspective of <strong>Infotainment</strong> and <strong>Instrument Cluster ECUs</strong> in a <strong>multi-powertrain automotive architecture</strong>, test data preparation involves simulating and validating a wide range of vehicle states, user interactions, and communication protocols. Here's a structured overview:</p>
+<hr>
+<h3 id="%F0%9F%8E%AF-1-objective-of-test-data-preparation">🎯 <strong>1. Objective of Test Data Preparation</strong></h3>
+<p>To ensure that the ECUs:</p>
+<ul>
+<li>Correctly interpret and display vehicle data across all powertrain types (ICE, HEV, BEV, FCEV)</li>
+<li>Maintain UI/UX consistency and responsiveness</li>
+<li>Handle edge cases, diagnostics, and fail-safes</li>
+</ul>
+<hr>
+<h3 id="%F0%9F%93%A6-2-key-test-data-categories">📦 <strong>2. Key Test Data Categories</strong></h3>
+<h4 id="a-vehicle-state-simulation">a. <strong>Vehicle State Simulation</strong></h4>
+<ul>
+<li>Speed, RPM, gear position</li>
+<li>Battery SOC, range estimation (for EVs)</li>
+<li>Fuel level, engine temperature (for ICE/HEV)</li>
+<li>Regenerative braking status</li>
+<li>Drive mode (Eco, Sport, EV-only, etc.)</li>
+</ul>
+<h4 id="b-canlinflexray-messages">b. <strong>CAN/LIN/FlexRay Messages</strong></h4>
+<ul>
+<li>Simulated messages from powertrain ECUs</li>
+<li>Diagnostic messages (UDS, OBD-II)</li>
+<li>Fault injection (e.g., sensor failure, communication loss)</li>
+</ul>
+<h4 id="c-user-interaction-data">c. <strong>User Interaction Data</strong></h4>
+<ul>
+<li>Touchscreen inputs (for infotainment)</li>
+<li>Steering wheel controls</li>
+<li>Voice commands</li>
+<li>HMI transitions and animations</li>
+</ul>
+<h4 id="d-environmental--contextual-data">d. <strong>Environmental &amp; Contextual Data</strong></h4>
+<ul>
+<li>Ambient temperature, lighting (for auto-dimming displays)</li>
+<li>GPS location, time zone (for navigation and clocks)</li>
+<li>OTA update scenarios</li>
+</ul>
+<hr>
+<h3 id="%F0%9F%A7%AA-3-testing-techniques">🧪 <strong>3. Testing Techniques</strong></h3>
+<h4 id="%E2%9C%85-for-instrument-cluster-ecus">✅ <strong>For Instrument Cluster ECUs</strong></h4>
+<ul>
+<li><strong>HIL (Hardware-in-the-Loop)</strong> simulation of vehicle signals <a href="https://www.ni.com/en/solutions/transportation/hardware-in-the-loop.html">1</a></li>
+<li><strong>Cluster display validation</strong> using real loads and stimuli <a href="https://www.eetimes.com/simulation-techniques-test-automotive-cluster-display-ecus/">2</a></li>
+<li><strong>Tell-tale and warning light testing</strong> (e.g., ABS, check engine)</li>
+<li><strong>Drive cycle simulation</strong> to test dynamic updates</li>
+</ul>
+<h4 id="%E2%9C%85-for-infotainment-ecus">✅ <strong>For Infotainment ECUs</strong></h4>
+<ul>
+<li><strong>UI/UX automation testing</strong> (e.g., Appium, Selenium)</li>
+<li><strong>Multimedia playback and codec testing</strong></li>
+<li><strong>Connectivity testing</strong> (Bluetooth, Wi-Fi, Android Auto/CarPlay)</li>
+<li><strong>Security and OTA update validation</strong> <a href="https://www.embitel.com/blog/embedded-blog/infotainment-testing-success-mantras-that-your-automotive-development-team-should-ace/">3</a></li>
+</ul>
+<hr>
+<h3 id="%F0%9F%A7%B0-4-tools--frameworks">🧰 <strong>4. Tools &amp; Frameworks</strong></h3>
+<ul>
+<li><strong>CANoe/CANalyzer</strong> for bus simulation</li>
+<li><strong>NI VeriStand</strong> or <strong>dSPACE</strong> for HIL setups</li>
+<li><strong>Android/Linux test frameworks</strong> for infotainment</li>
+<li><strong>Test automation</strong>: Jenkins, Robot Framework, Appium</li>
+</ul>
+<hr>
+<h3 id="%F0%9F%93%8B-5-test-data-preparation-checklist">📋 <strong>5. Test Data Preparation Checklist</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Data Type</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Powertrain Signals</td>
+<td>CAN frames</td>
+<td>RPM = 3000, SOC = 80%</td>
+</tr>
+<tr>
+<td>UI Events</td>
+<td>Touch input logs</td>
+<td>Tap on &quot;Navigation&quot;</td>
+</tr>
+<tr>
+<td>Fault Injection</td>
+<td>Diagnostic codes</td>
+<td>P0A80 (Battery failure)</td>
+</tr>
+<tr>
+<td>Environmental</td>
+<td>GPS, Time</td>
+<td>Location = Coimbatore, 2 PM</td>
+</tr>
+<tr>
+<td>Media</td>
+<td>Audio/Video files</td>
+<td>MP3, FLAC, MP4</td>
+</tr>
+<tr>
+<td>Connectivity</td>
+<td>Device profiles</td>
+<td>iPhone 14, Android 13</td>
+</tr>
+</tbody>
+</table>
+<p>common</p>
+<p>Preparing common test data for <strong>multi-powertrain architectures</strong> in automotive systems—especially with the rise of electrification, hybridization, and modular vehicle platforms—requires a structured approach to ensure comprehensive validation and performance benchmarking. Here's a breakdown of the typical test data preparation process:</p>
+<hr>
+<h3 id="%F0%9F%94%A7-1-define-powertrain-configurations">🔧 <strong>1. Define Powertrain Configurations</strong></h3>
+<p>Multi-powertrain architectures may include:</p>
+<ul>
+<li><strong>Internal Combustion Engine (ICE)</strong></li>
+<li><strong>Hybrid Electric Vehicle (HEV)</strong></li>
+<li><strong>Battery Electric Vehicle (BEV)</strong></li>
+<li><strong>Fuel Cell Electric Vehicle (FCEV)</strong></li>
+</ul>
+<p>Each configuration requires tailored test scenarios and data sets.</p>
+<hr>
+<h3 id="%F0%9F%93%8A-2-identify-key-test-parameters">📊 <strong>2. Identify Key Test Parameters</strong></h3>
+<p>Common parameters across architectures include:</p>
+<ul>
+<li><strong>Torque and power curves</strong></li>
+<li><strong>Energy consumption and efficiency</strong></li>
+<li><strong>Thermal behavior</strong></li>
+<li><strong>NVH (Noise, Vibration, Harshness) characteristics</strong></li>
+<li><strong>Battery SOC/SOH (for electrified systems)</strong></li>
+<li><strong>Gear shifting patterns (for ICE/HEV)</strong></li>
+</ul>
+<hr>
+<h3 id="%F0%9F%A7%AA-3-test-data-categories">🧪 <strong>3. Test Data Categories</strong></h3>
+<p>Test data is typically grouped into:</p>
+<h4 id="a-static-data">a. <strong>Static Data</strong></h4>
+<ul>
+<li>Component specifications (motor, engine, battery, inverter)</li>
+<li>Calibration maps (e.g., fuel maps, torque maps)</li>
+</ul>
+<h4 id="b-dynamic-data">b. <strong>Dynamic Data</strong></h4>
+<ul>
+<li>Drive cycle data (e.g., WLTP, FTP-75, custom cycles)</li>
+<li>Real-world telemetry (speed, acceleration, load, terrain)</li>
+</ul>
+<h4 id="c-environmental-data">c. <strong>Environmental Data</strong></h4>
+<ul>
+<li>Ambient temperature, humidity, altitude</li>
+<li>Road surface conditions</li>
+</ul>
+<hr>
+<h3 id="%F0%9F%A7%B0-4-data-collection-tools">🧰 <strong>4. Data Collection Tools</strong></h3>
+<ul>
+<li><strong>CAN bus loggers</strong></li>
+<li><strong>High-speed DAQ systems</strong></li>
+<li><strong>Thermal cameras and sensors</strong></li>
+<li><strong>NVH microphones and accelerometers</strong></li>
+<li><strong>Battery management system (BMS) logs</strong></li>
+</ul>
+<hr>
+<h3 id="%F0%9F%A7%A0-5-data-processing--storage">🧠 <strong>5. Data Processing &amp; Storage</strong></h3>
+<ul>
+<li>Convert raw signals to usable formats (e.g., JSON, CSV, Parquet)</li>
+<li>Use cloud platforms (e.g., Azure Event Grid, Data Lake) for ingestion and analytics <a href="https://learn.microsoft.com/en-us/azure/architecture/industries/automotive/automotive-telemetry-analytics">1</a></li>
+<li>Apply preprocessing: filtering, normalization, synchronization</li>
+</ul>
+<hr>
+<h3 id="%F0%9F%A7%AA-6-test-scenarios">🧪 <strong>6. Test Scenarios</strong></h3>
+<ul>
+<li><strong>Urban, highway, and mixed drive cycles</strong></li>
+<li><strong>Cold start and hot soak tests</strong></li>
+<li><strong>Regenerative braking and coasting</strong></li>
+<li><strong>Load variation and hill climb simulations</strong></li>
+</ul>
+<hr>
+<h3 id="%F0%9F%93%88-7-validation--analysis">📈 <strong>7. Validation &amp; Analysis</strong></h3>
+<ul>
+<li>Use tools like MATLAB/Simulink, AVL, or Siemens Testlab</li>
+<li>Apply machine learning for anomaly detection or predictive maintenance</li>
+<li>Perform NVH analysis using smart displays and pivot tables <a href="https://www.plm.automation.siemens.com/media/global/en/Powertrain%20NVH%20Testing%20-%20Webinar_tcm27-78124.pdf">2</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test_strategy_V2.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>To develop a <strong>common test strategy</strong> for a digital instrument cluster (IC) and infotainment system across <strong>ICE, BEV, Hydrogen ICE, and Fuel Cell (FCEV)</strong> powertrains, start by identifying <strong>shared features</strong> and <strong>powertrain-specific variations</strong>. Below is a structured breakdown:</p>
+<hr>
+<h3 id="1-common-features-all-powertrains"><strong>1. Common Features (All Powertrains)</strong></h3>
+<p><strong>Core UI/UX &amp; Safety Elements:</strong></p>
+<ul>
+<li><strong>Speedometer</strong></li>
+<li><strong>Odometer/Trip Meter</strong></li>
+<li><strong>Warning Indicators</strong> (e.g., ABS, airbag, seatbelt, tire pressure, stability control)</li>
+<li><strong>Ambient Temperature</strong></li>
+<li><strong>Driver Assistance Displays</strong> (e.g., lane-keep, adaptive cruise, blind-spot monitoring)</li>
+<li><strong>Infotainment Integration</strong> (media, calls, navigation via Android Auto/CarPlay)</li>
+<li><strong>Gear Position</strong> (P/R/N/D)</li>
+<li><strong>Exterior Lighting Status</strong> (headlights, turn signals)</li>
+<li><strong>Door/Trunk Ajar Warnings</strong></li>
+<li><strong>Service Reminders</strong></li>
+</ul>
+<p><strong>Testing Strategy:</strong></p>
+<ul>
+<li><strong>Hardware-Agnostic Tests:</strong>
+<ul>
+<li>Validate rendering accuracy (e.g., units, colors, icons).</li>
+<li>Test warning light prioritization logic (e.g., critical vs. non-critical alerts).</li>
+<li>Verify infotainment data sync (e.g., navigation instructions, media metadata).</li>
+</ul>
+</li>
+<li><strong>Cross-Powertrain Simulation:</strong>
+<ul>
+<li>Use a <strong>vehicle simulation tool</strong> (e.g., CANoe) to inject common CAN/LIN signals (speed, gear, warnings) across all powertrains.</li>
+<li>Stress-test under extreme conditions (e.g., temperature, voltage fluctuations).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-powertrain-specific-features"><strong>2. Powertrain-Specific Features</strong></h3>
+<h4 id="a-ice-internal-combustion-engine"><strong>a. ICE (Internal Combustion Engine)</strong></h4>
+<ul>
+<li><strong>Unique Elements:</strong>
+<ul>
+<li>Tachometer (RPM)</li>
+<li>Engine Coolant Temperature</li>
+<li>Fuel Gauge &amp; Range (DTE)</li>
+<li>Oil Pressure/Life</li>
+<li>Instant/Average Fuel Economy</li>
+</ul>
+</li>
+<li><strong>Testing Focus:</strong>
+<ul>
+<li>Validate fuel calculations (e.g., DTE logic when fuel low).</li>
+<li>Test engine-related warnings (e.g., overheating, oil pressure loss).</li>
+</ul>
+</li>
+</ul>
+<h4 id="b-bev-battery-electric"><strong>b. BEV (Battery Electric)</strong></h4>
+<ul>
+<li><strong>Unique Elements:</strong>
+<ul>
+<li>Battery State of Charge (%)</li>
+<li>Regenerative Braking Level</li>
+<li>Charging Status (AC/DC, time-to-full, charging rate)</li>
+<li>Power Flow Diagram (motor/battery/regen)</li>
+<li>Energy Consumption (kWh/km)</li>
+</ul>
+</li>
+<li><strong>Testing Focus:</strong>
+<ul>
+<li>Simulate charging scenarios (e.g., plug/unplug events, fast-charging interruptions).</li>
+<li>Test range accuracy under varying driving modes (e.g., eco vs. sport).</li>
+<li>Validate regen braking display synced with pedal input.</li>
+</ul>
+</li>
+</ul>
+<h4 id="c-hydrogen-ice"><strong>c. Hydrogen ICE</strong></h4>
+<ul>
+<li><strong>Unique Elements:</strong>
+<ul>
+<li>Hydrogen Tank Level</li>
+<li>Hydrogen Pressure/Temperature</li>
+<li>H₂ Consumption Rate (kg/100km)</li>
+<li>Range (H₂-based DTE)</li>
+</ul>
+</li>
+<li><strong>Testing Focus:</strong>
+<ul>
+<li>Verify H₂ leak/failure warnings.</li>
+<li>Test accuracy of consumption calculations vs. tank pressure.</li>
+</ul>
+</li>
+</ul>
+<h4 id="d-fuel-cell-fcev"><strong>d. Fuel Cell (FCEV)</strong></h4>
+<ul>
+<li><strong>Unique Elements:</strong>
+<ul>
+<li>Hydrogen Tank Level &amp; Range</li>
+<li>Fuel Cell Status (e.g., stack efficiency, power output)</li>
+<li>Battery SOC (auxiliary battery)</li>
+<li>H₂ Consumption + Energy Flow Diagram (H₂ → electricity → motor)</li>
+</ul>
+</li>
+<li><strong>Testing Focus:</strong>
+<ul>
+<li>Validate dual-energy display (H₂ tank + battery).</li>
+<li>Test fault scenarios (e.g., fuel cell degradation, stack errors).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-common-test-strategy-framework"><strong>3. Common Test Strategy Framework</strong></h3>
+<h4 id="a-modular-test-architecture"><strong>a. Modular Test Architecture</strong></h4>
+<ul>
+<li><strong>Layered Approach:</strong>
+<ul>
+<li><strong>Base Layer (Common):</strong> Test core UI, warnings, and infotainment integration.</li>
+<li><strong>Powertrain Layer:</strong> Use <strong>configuration files</strong> to enable/disable features per powertrain.</li>
+</ul>
+</li>
+<li><strong>Tools:</strong>
+<ul>
+<li><strong>Simulation:</strong> CANoe, dSPACE, or LabVIEW for virtual vehicle environments.</li>
+<li><strong>Automation:</strong> Python/Robot Framework for repetitive tests (e.g., warning light sequences).</li>
+</ul>
+</li>
+</ul>
+<h4 id="b-key-test-scenarios"><strong>b. Key Test Scenarios</strong></h4>
+<ol>
+<li><strong>Startup/Shutdown Sequences:</strong>
+<ul>
+<li>Verify all powertrains show correct startup animations and default views.</li>
+</ul>
+</li>
+<li><strong>Mode Transition Tests:</strong>
+<ul>
+<li>Validate display changes when switching drive modes (e.g., sport/eco).</li>
+</ul>
+</li>
+<li><strong>Failure Injection:</strong>
+<ul>
+<li>Simulate sensor failures (e.g., battery sensor disconnect in BEV) and check IC warnings.</li>
+</ul>
+</li>
+<li><strong>Localization:</strong>
+<ul>
+<li>Test units (km/miles, °C/°F) and language support across regions.</li>
+</ul>
+</li>
+</ol>
+<h4 id="c-infotainment-integration-tests"><strong>c. Infotainment Integration Tests</strong></h4>
+<ul>
+<li><strong>Shared Workflow:</strong>
+<ul>
+<li>Validate IC shortcuts to infotainment (e.g., &quot;Navigate to Home&quot; via steering wheel).</li>
+<li>Test simultaneous alerts (e.g., phone call + low fuel warning).</li>
+</ul>
+</li>
+<li><strong>Data Consistency:</strong>
+<ul>
+<li>Ensure range/consumption data matches between IC and infotainment screens.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-efficiency--scalability"><strong>4. Efficiency &amp; Scalability</strong></h3>
+<ul>
+<li><strong>Reusable Test Cases:</strong>
+<ul>
+<li>70% of tests (common features) can be reused across powertrains with parameterization.</li>
+</ul>
+</li>
+<li><strong>Continuous Testing Pipeline:</strong>
+<ul>
+<li>Integrate with CI/CD (e.g., Jenkins) to run automated tests on hardware-in-loop (HIL) setups.</li>
+</ul>
+</li>
+<li><strong>Traceability Matrix:</strong>
+<ul>
+<li>Map requirements (common vs. powertrain-specific) to test cases for audits.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="implementation-roadmap"><strong>Implementation Roadmap</strong></h3>
+<ol>
+<li><strong>Phase 1:</strong> Develop common test suite for shared features.</li>
+<li><strong>Phase 2:</strong> Build powertrain-specific test modules.</li>
+<li><strong>Phase 3:</strong> Integrate with infotainment regression tests.</li>
+<li><strong>Phase 4:</strong> Deploy HIL automation for nightly testing.</li>
+</ol>
+<p>By decoupling <strong>common logic</strong> from <strong>powertrain-specific variations</strong>, you’ll streamline testing while ensuring full coverage.<br>
+<strong>Tools Recommendation:</strong> Vector CANoe (simulation), TestStand (automation), JIRA (traceability).</p>
+<p>Below are structured design diagrams (in text format) to visualize feature differentiation, testing levels, and compliance coverage for multi-powertrain digital instrument clusters (IC) and infotainment systems. These follow automotive industry best practices and align with ASPICE/ISO 26262 frameworks.</p>
+<hr>
+<h3 id="diagram-1-feature-differentiation-matrix"><strong>Diagram 1: Feature Differentiation Matrix</strong></h3>
+<p><em>(Powertrain-Specific vs. Common Features)</em></p>
+<pre class="hljs"><code><div>+------------------------+-----------+--------+-----------+--------+  
+| Feature                | ICE       | BEV    | H₂-ICE    | FCEV   |  
++------------------------+-----------+--------+-----------+--------+  
+| **COMMON CORE**        |           |        |           |        |  
+| Speedometer            | ✓         | ✓      | ✓         | ✓      |  
+| Safety Warnings        | ✓         | ✓      | ✓         | ✓      |  
+| Driver Assistance      | ✓         | ✓      | ✓         | ✓      |  
+| Infotainment Sync      | ✓         | ✓      | ✓         | ✓      |  
++------------------------+-----------+--------+-----------+--------+  
+| **POWERTRAIN-SPECIFIC**|           |        |           |        |  
+| Tachometer (RPM)       | ✓         | -      | ✓         | -      |  
+| Battery SOC            | -         | ✓      | -         | ✓      |  
+| H₂ Tank Level          | -         | -      | ✓         | ✓      |  
+| Regen Braking Display  | -         | ✓      | -         | ✓      |  
+| Fuel Economy           | mpg       | kWh/km | kg/100km  | kg/kW  |  
+| Charging Status        | -         | ✓      | -         | -      |  
+| Fuel Cell Efficiency   | -         | -      | -         | ✓      |  
++------------------------+-----------+--------+-----------+--------+  
+</div></code></pre>
+<hr>
+<h3 id="diagram-2-end-to-end-testing-levels"><strong>Diagram 2: End-to-End Testing Levels</strong></h3>
+<p><em>(Pyramid Model with Powertrain Coverage)</em></p>
+<pre class="hljs"><code><div>                            ↗ HIL/Vehicle Testing (ALL Powertrains)  
+                          ↗⤴ System Integration Testing (ICE + BEV + FCEV)  
+                        ↗⤴⤴ Component Testing (Per Powertrain)  
+______________________/¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯  
+[Test Granularity]      Unit Level   →   System Level   →   Field  
+[Test Environment]      SIL → HIL →  Vehicle → Real-world  
+ 
+► **Unit/Module Testing**  
+  - Common: Warning light logic, UI rendering engine  
+  - Specific: BEV range algo, H₂ pressure sensor sim  
+ 
+► **Component Testing**  
+  - ICE: Fuel DTE calculation validation  
+  - FCEV: Dual-energy (H₂ + battery) display logic  
+ 
+► **System Integration**  
+  - Infotainment-IC sync (e.g., nav instructions during low battery)  
+  - Cross-powertrain failure injection (CAN error simulation)  
+ 
+► **HIL/Vehicle Testing**  
+  - BEV: Charging interrupt recovery @ -30°C  
+  - FCEV: H₂ leak warning + emergency shutdown  
+ 
+► **Field Validation**  
+  - Real-world range accuracy (BEV/FCEV in mountain terrain)  
+  - Regional compliance (e.g., km/miles switchover)  
+</div></code></pre>
+<hr>
+<h3 id="diagram-3-compliance-coverage-matrix"><strong>Diagram 3: Compliance Coverage Matrix</strong></h3>
+<pre class="hljs"><code><div>+---------------------+-------------------+---------------------+-------------------------+  
+| Compliance Standard | Test Level        | Powertrain Coverage | Key Test Cases          |  
++---------------------+-------------------+---------------------+-------------------------+  
+| **ISO 26262**       | Unit → HIL        | ALL                 | ASIL-B: Critical warn.  |  
+| (Functional Safety) |                   |                     | priority hierarchy      |  
++---------------------+-------------------+---------------------+-------------------------+  
+| **FMVSS 101**       | HIL → Field       | ALL                 | Speedo tolerance ±3%    |  
+| (Controls/Displays) |                   |                     | Units compliance (mph)  |  
++---------------------+-------------------+---------------------+-------------------------+  
+| **UN R79**          | Component → Field | ALL                 | Steering input feedback |  
+| (Assist Systems)    |                   |                     | Lane-keep alert timing  |  
++---------------------+-------------------+---------------------+-------------------------+  
+| **GDPR/CCPA**       | Unit → System     | ALL                 | Infotainment data       |  
+| (Data Privacy)      |                   |                     | anonymization logs      |  
++---------------------+-------------------+---------------------+-------------------------+  
+| **SAE J2402**       | HIL → Field       | H₂-ICE/FCEV         | H₂ leak detection &lt;3s   |  
+| (Hydrogen Safety)   |                   |                     | Tank pressure warnings  |  
++---------------------+-------------------+---------------------+-------------------------+  
+| **IEC 62196**       | Component → Field | BEV/FCEV            | Charging status accuracy|  
+| (EV Charging)       |                   |                     | Connector fault display |  
++---------------------+-------------------+---------------------+-------------------------+  
+</div></code></pre>
+<hr>
+<h3 id="key-implementation-notes"><strong>Key Implementation Notes</strong></h3>
+<ol>
+<li>
+<p><strong>Feature Flag System</strong></p>
+<ul>
+<li>Use config files to enable/disable powertrain-specific features:<pre class="hljs"><code><div><span class="hljs-string">"powertrain_profiles"</span>: {
+  <span class="hljs-attr">"BEV"</span>: {
+    <span class="hljs-attr">"features"</span>: [<span class="hljs-string">"regen_display"</span>, <span class="hljs-string">"charging_status"</span>],
+    <span class="hljs-attr">"compliance"</span>: [<span class="hljs-string">"IEC 62196"</span>, <span class="hljs-string">"ISO 6469"</span>]
+  }
+}
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Test Environment Orchestration</strong></p>
+<pre><code class="language-mermaid"><div class="mermaid">graph LR
+  A[Test Automation Suite] --> B[CANoe Simulation]
+  B --> C{PowerTrain}
+  C -->|ICE| D[Engine ECU Sim]
+  C -->|BEV| E[BMS Simulator]
+  C -->|FCEV| F[Fuel Cell + H₂ Tank Sim]
+  D & E & F --> G[Instrument Cluster]
+  G --> H[Validation Reports]
+</div></code></pre>
+</li>
+<li>
+<p><strong>Traceability Flow</strong></p>
+<pre class="hljs"><code><div>Requirement → Test Case → Test Result → Compliance Document  
+(e.g., ISO 26262 Part 8 ↔ HIL Test #FC-23 ↔ ASIL-B Pass ↔ Safety Case)  
+</div></code></pre>
+</li>
+</ol>
+<p><strong>Tools Integration</strong>:</p>
+<ul>
+<li><strong>Simulation</strong>: dSPACE SCALEXIO (multi-ECU HIL)</li>
+<li><strong>Automation</strong>: Jenkins + CAPL scripts</li>
+<li><strong>Traceability</strong>: Polarion ALM</li>
+<li><strong>Compliance</strong>: Ansys Medini Analyze</li>
+</ul>
+<p>This structure ensures 85% test reuse for common features while maintaining powertrain-specific validation depth. Field testing should cover extreme environments (desert for BEV thermal management, alpine for H₂ density calculations).</p>
+
+</body>
+</html>

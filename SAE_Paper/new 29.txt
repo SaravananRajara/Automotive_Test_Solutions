@@ -1,0 +1,95 @@
+Test Level	Focus Area	Tools Used	Example	Multi Terrain arch proposal
+
+Unit	
+Scope:Individual functions	
+Tools:gTest, CppUTest, pytest	
+Example:Speed logic	
+Propsal:
+Grouping of common logic function testcases and Domain specific logics function testcases
+
+Integration	
+Scope:Module interactions
+Tools:CANoe, Debuggers	
+Example:GPIO Register level verification, Fault injection tests for UDS,
+Proposal: Maintain Test suits for Different architectures and reuse the common software modules across Multiple Architectures.
+ 
+Software Qualification	
+Scope: Simulated Software input and output to cluster	
+Tools:CANoe, SIL benches	Diagnostics, Software update
+Example:Gear info, State of charge, HMI	
+Proposal:
+1.Segregate AutoSAR and HMI Features 
+2. Customize the test scripts 
+With General functions based on the power trains
+
+System	
+Scope:Full cluster behavior	
+Tools:HIL, test benches, Labcar
+Example:HVAC , Engine Status check, 
+Communication between ECU’s
+Proposal
+High level Generic Test specifications to be deployed based on type of Vehicle level and labcar
+
+Acceptance
+Scope:User & business requirements	
+OEM tools, manual scripts	
+Example:UX validation	
+Proposal:
+1.FOTA, Software update over UDS and USB common use cases to be defined and tested
+2. Feature and Variant specific checklists can be maintained to identify the use cases
+
+Regression	
+Scope:Stability after changes	
+Tools:CI/CD, automated suites	
+Example:Re-run tests	
+Proposal:
+Common automated framework with multi test sections can be proposed to reuse test scripts across multi power terrain architecture
+
+
+To bring a **use case view** from the block diagram you shared, we can organize the information to highlight **real-world applications or scenarios** where each powertrain type and test strategy would be relevant. Here's how you can approach it:
+
+---
+
+Use Case View for Power Trains and Test Strategy
+1. Combustion Engine (ICE)
+- Use Case: Traditional passenger vehicles, commercial trucks.
+- Architecture: Distributed ECU, Classic AUTOSAR.
+- Testing Focus:
+  - Cluster & IVI common features.
+  - Domain-specific features like engine diagnostics.
+  - KPI measurement for fuel efficiency and emissions.
+
+2. Battery Electric Vehicle (BEV)
+- Use Case: Urban mobility, electric cars, fleet vehicles.
+- Architecture: Zonal, Adaptive AUTOSAR.
+- Testing Focus:
+  - Cross-functional features (e.g., battery status in cluster & IVI).
+  - Domain-specific features like charging and range estimation.
+  - KPI measurement for battery health and energy consumption.
+
+3. Hydrogen ICE
+- Use Case: Heavy-duty transport, long-range applications.
+- Architecture: Distributed ECU, Classic AUTOSAR.
+- Testing Focus:
+  - Domain-specific features like hydrogen fuel management.
+  - KPI measurement for combustion efficiency and safety.
+
+4. Fuel Cell Electric Vehicle (FCEV)
+- Use Case: Clean energy transport, buses, logistics.
+- Architecture: Centralized Service-Oriented.
+- Testing Focus:
+  - Service-oriented diagnostics.
+  - KPI measurement for fuel cell performance and energy conversion.
+
+---
+
+Test Strategy Use Cases
+
+- Test Section 1: Validate shared UI/UX features across vehicle types.
+- Test Section 2: Ensure domain-specific logic (e.g., battery vs. fuel).
+- Test Section 3: Test integration between systems (e.g., IVI and cluster).
+- Test Section 4: Measure performance indicators across domains.
+
+---
+
+Would you like this use case view in a **visual format** (e.g., diagram or slide), or as a **downloadable document** like PDF or Word?

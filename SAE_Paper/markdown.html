@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>markdown.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<table>
+<thead>
+<tr>
+<th>Powertrain</th>
+<th>Development Phase</th>
+<th>SubPhase</th>
+<th>Certification Homologation</th>
+<th>Feature Variations</th>
+<th>Test Strategy</th>
+<th>Test Type</th>
+<th>Test Infra Deployment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E/E</td>
+<td>Major Development releases</td>
+<td>System Design</td>
+<td>Functional Safety (ISO 26262)</td>
+<td>SW Configurations, HIL Setup</td>
+<td>Model-Based Testing</td>
+<td>SIL/HIL, Fuzz Testing</td>
+<td>Cloud HIL, Virtual ECUs</td>
+</tr>
+<tr>
+<td>E/E</td>
+<td>Proto releases</td>
+<td>Integration</td>
+<td>EMC/EMI Compliance</td>
+<td>Sensor Fusion Variations</td>
+<td>Fault Injection</td>
+<td>Environmental Testing</td>
+<td>Portable Test Rigs</td>
+</tr>
+<tr>
+<td>E/E</td>
+<td>Pre-Development releases</td>
+<td>Feasibility</td>
+<td>Cybersecurity (UNECE R155)</td>
+<td>ECU Network Topologies</td>
+<td>Requirements Validation</td>
+<td>Bench Validation</td>
+<td>CANoe/CANalyzer Setup</td>
+</tr>
+<tr>
+<td>E/E</td>
+<td>Production releases</td>
+<td>SOP</td>
+<td>Regional Standards (e.g., FCC)</td>
+<td>Production Tolerances</td>
+<td>End-of-Line Testing</td>
+<td>Conformity Testing</td>
+<td>Automated Test Benches</td>
+</tr>
+<tr>
+<td>E/E</td>
+<td>Post-Production releases</td>
+<td>Maintenance</td>
+<td>Recall Compliance</td>
+<td>OTA Update Variants</td>
+<td>Field Monitoring</td>
+<td>Diagnostic Trouble Code Tests</td>
+<td>Remote Diagnostics Tools</td>
+</tr>
+<tr>
+<td>------------</td>
+<td>--------------------------</td>
+<td>-----------------------</td>
+<td>----------------------------------</td>
+<td>--------------------------------</td>
+<td>-------------------------------</td>
+<td>-------------------------------</td>
+<td>--------------------------------</td>
+</tr>
+<tr>
+<td>ICE</td>
+<td>Major Development releases</td>
+<td>Combustion Calibration</td>
+<td>Euro 7/EPA Tier 4</td>
+<td>Fuel Injection Strategies</td>
+<td>Durability Simulation</td>
+<td>Engine Dyno Tests</td>
+<td>Engine Test Cells</td>
+</tr>
+<tr>
+<td>ICE</td>
+<td>Proto releases</td>
+<td>Thermal Validation</td>
+<td>Noise Regulations</td>
+<td>Turbocharging Configs</td>
+<td>NVH Analysis</td>
+<td>Emission Cycle Tests</td>
+<td>Chassis Dyno, Acoustic Chambers</td>
+</tr>
+<tr>
+<td>ICE</td>
+<td>Pre-Development releases</td>
+<td>Concept Design</td>
+<td>Crash Safety (NCAP)</td>
+<td>Exhaust Aftertreatment</td>
+<td>CFD Analysis</td>
+<td>Component Fatigue Tests</td>
+<td>3D Simulation Suites</td>
+</tr>
+<tr>
+<td>ICE</td>
+<td>Production releases</td>
+<td>Mass Production</td>
+<td>On-Board Diagnostics (OBD)</td>
+<td>Manufacturing Tolerances</td>
+<td>Statistical Process Control</td>
+<td>Leak Testing</td>
+<td>Calibration Robots</td>
+</tr>
+<tr>
+<td>ICE</td>
+<td>Post-Production releases</td>
+<td>Warranty</td>
+<td>Recall Campaigns</td>
+<td>Service Kits</td>
+<td>Field Failure Analysis</td>
+<td>Warranty Claim Validation</td>
+<td>Dealer Service Tools</td>
+</tr>
+<tr>
+<td>------------</td>
+<td>--------------------------</td>
+<td>-----------------------</td>
+<td>----------------------------------</td>
+<td>--------------------------------</td>
+<td>-------------------------------</td>
+<td>-------------------------------</td>
+<td>--------------------------------</td>
+</tr>
+<tr>
+<td>HEV</td>
+<td>Major Development releases</td>
+<td>Power Split</td>
+<td>HEV-Specific Certification</td>
+<td>Battery Sizing Options</td>
+<td>Energy Management Simulation</td>
+<td>Hybrid Mode Switching Tests</td>
+<td>Battery Emulators</td>
+</tr>
+<tr>
+<td>HEV</td>
+<td>Proto releases</td>
+<td>Regenerative Braking</td>
+<td>Electrical Safety (IEC 60664)</td>
+<td>Motor-Generator Configs</td>
+<td>Thermal Runaway Analysis</td>
+<td>High-Voltage Isolation Tests</td>
+<td>HV Test Labs</td>
+</tr>
+<tr>
+<td>HEV</td>
+<td>Pre-Development releases</td>
+<td>Component Sourcing</td>
+<td>Battery Transport Cert.</td>
+<td>Transmission Variants</td>
+<td>Cost Optimization</td>
+<td>Cold Start Tests</td>
+<td>Climate Chambers</td>
+</tr>
+<tr>
+<td>HEV</td>
+<td>Production releases</td>
+<td>Assembly</td>
+<td>End-of-Life Recycling</td>
+<td>Production Cell Chemistry</td>
+<td>Charge/Discharge Cycling</td>
+<td>On-Road Fuel Economy Tests</td>
+<td>Automated Assembly Lines</td>
+</tr>
+<tr>
+<td>HEV</td>
+<td>Post-Production releases</td>
+<td>EOL Service</td>
+<td>Second-Life Battery Compliance</td>
+<td>Remanufactured Parts</td>
+<td>Battery Health Monitoring</td>
+<td>Capacity Degradation Tests</td>
+<td>Service Center Diagnostics</td>
+</tr>
+<tr>
+<td>------------</td>
+<td>--------------------------</td>
+<td>-----------------------</td>
+<td>----------------------------------</td>
+<td>--------------------------------</td>
+<td>-------------------------------</td>
+<td>-------------------------------</td>
+<td>--------------------------------</td>
+</tr>
+<tr>
+<td>BEV</td>
+<td>Major Development releases</td>
+<td>Pack Integration</td>
+<td>Battery Safety (GB 38031)</td>
+<td>Charging Profiles (AC/DC)</td>
+<td>Range Simulation</td>
+<td>Thermal Propagation Tests</td>
+<td>Battery Test Chambers</td>
+</tr>
+<tr>
+<td>BEV</td>
+<td>Proto releases</td>
+<td>Thermal Mgmt</td>
+<td>Grid Compliance (ISO 15118)</td>
+<td>Cell Chemistries (NMC/LFP)</td>
+<td>Fast-Charge Validation</td>
+<td>DC Charging Stress Tests</td>
+<td>Supercharger Test Stations</td>
+</tr>
+<tr>
+<td>BEV</td>
+<td>Pre-Development releases</td>
+<td>BMS Algorithm</td>
+<td>Recyclability Cert.</td>
+<td>AWD/RWD Configurations</td>
+<td>Cell Balancing Strategy</td>
+<td>Cell Aging Tests</td>
+<td>Cyclers, Environmental Chambers</td>
+</tr>
+<tr>
+<td>BEV</td>
+<td>Production releases</td>
+<td>Final Assembly</td>
+<td>WLTP/Range Certification</td>
+<td>Software-Defined Features</td>
+<td>EOL Functional Test</td>
+<td>HV Safety Checks</td>
+<td>Robotic Assembly</td>
+</tr>
+<tr>
+<td>BEV</td>
+<td>Post-Production releases</td>
+<td>Battery Repurposing</td>
+<td>Second-Life Cert.</td>
+<td>Refurbishment Packs</td>
+<td>Fleet Data Analytics</td>
+<td>OTA Update Rollback Tests</td>
+<td>Cloud-Based Monitoring</td>
+</tr>
+<tr>
+<td>------------</td>
+<td>--------------------------</td>
+<td>-----------------------</td>
+<td>----------------------------------</td>
+<td>--------------------------------</td>
+<td>-------------------------------</td>
+<td>-------------------------------</td>
+<td>--------------------------------</td>
+</tr>
+<tr>
+<td>FCEV</td>
+<td>Major Development releases</td>
+<td>Stack Integration</td>
+<td>H₂ Safety (SAE J2602)</td>
+<td>Fuel Cell Stack Sizing</td>
+<td>Efficiency Simulation</td>
+<td>Hydrogen Leak Tests</td>
+<td>H₂ Leak Detectors</td>
+</tr>
+<tr>
+<td>FCEV</td>
+<td>Proto releases</td>
+<td>Cold Start</td>
+<td>Refueling Protocol (SAE J2601)</td>
+<td>Thermal System Configs</td>
+<td>Transient Response Analysis</td>
+<td>Cold-Climate Tests</td>
+<td>Cryogenic Test Bays</td>
+</tr>
+<tr>
+<td>FCEV</td>
+<td>Pre-Development releases</td>
+<td>H₂ Storage</td>
+<td>UN GTR 13 Compliance</td>
+<td>Tank Material Variants</td>
+<td>Pressure Cycling</td>
+<td>Burst Pressure Tests</td>
+<td>Pressure Vessel Test Rigs</td>
+</tr>
+<tr>
+<td>FCEV</td>
+<td>Production releases</td>
+<td>System Test</td>
+<td>Emission Certification (ZEV)</td>
+<td>Production Stack Tolerances</td>
+<td>Catalyst Coating Validation</td>
+<td>Performance Endurance Tests</td>
+<td>Automated Stack Assembly</td>
+</tr>
+<tr>
+<td>FCEV</td>
+<td>Post-Production releases</td>
+<td>Decommissioning</td>
+<td>H₂ Tank Recycling</td>
+<td>Service Kits</td>
+<td>H₂ Purity Monitoring</td>
+<td>Membrane Degradation Tests</td>
+<td>Field Monitoring Sensors</td>
+</tr>
+<tr>
+<td>------------</td>
+<td>--------------------------</td>
+<td>-----------------------</td>
+<td>----------------------------------</td>
+<td>--------------------------------</td>
+<td>-------------------------------</td>
+<td>-------------------------------</td>
+<td>--------------------------------</td>
+</tr>
+<tr>
+<td>CDC</td>
+<td>Major Development releases</td>
+<td>Architecture</td>
+<td>Functional Safety (ASIL B)</td>
+<td>OS/Hypervisor Configs</td>
+<td>Virtual Prototyping</td>
+<td>Cybersecurity Penetration</td>
+<td>Virtualization Platforms</td>
+</tr>
+<tr>
+<td>CDC</td>
+<td>Proto releases</td>
+<td>Sensor Fusion</td>
+<td>Data Privacy (GDPR)</td>
+<td>HMI Variants</td>
+<td>Latency Testing</td>
+<td>Real-Time Performance Tests</td>
+<td>Edge Computing Clusters</td>
+</tr>
+<tr>
+<td>CDC</td>
+<td>Pre-Development releases</td>
+<td>SW Partitioning</td>
+<td>Regional Navigation Laws</td>
+<td>Display Resolutions</td>
+<td>Over-the-Air Update Tests</td>
+<td>Fail-Over Tests</td>
+<td>CI/CD Pipelines</td>
+</tr>
+<tr>
+<td>CDC</td>
+<td>Production releases</td>
+<td>Integration</td>
+<td>E-mark Certification</td>
+<td>Production Firmware</td>
+<td>HW-SW Compatibility</td>
+<td>EMI/ESD Tests</td>
+<td>EMC Chambers</td>
+</tr>
+<tr>
+<td>CDC</td>
+<td>Post-Production releases</td>
+<td>Updates</td>
+<td>Recall Compliance</td>
+<td>Software Patches</td>
+<td>Bug Tracking</td>
+<td>User Experience Surveys</td>
+<td>Telematics Data Analytics</td>
+</tr>
+<tr>
+<td>------------</td>
+<td>--------------------------</td>
+<td>-----------------------</td>
+<td>----------------------------------</td>
+<td>--------------------------------</td>
+<td>-------------------------------</td>
+<td>-------------------------------</td>
+<td>--------------------------------</td>
+</tr>
+<tr>
+<td>PHEV</td>
+<td>Major Development releases</td>
+<td>Mode Switching</td>
+<td>PHEV-Specific Cert. (RDE)</td>
+<td>Battery Size/ICE Combos</td>
+<td>Charge-Sustaining Simulation</td>
+<td>All-Electric Range Tests</td>
+<td>Dual Dyno Testbeds</td>
+</tr>
+<tr>
+<td>PHEV</td>
+<td>Proto releases</td>
+<td>Transition Calibration</td>
+<td>Plug Safety (IEC 62196)</td>
+<td>Charger Types (Type 1/2)</td>
+<td>Energy Distribution Logic</td>
+<td>Mixed-Mode Efficiency Tests</td>
+<td>HVIL Testers</td>
+</tr>
+<tr>
+<td>PHEV</td>
+<td>Pre-Development releases</td>
+<td>Component Synergy</td>
+<td>Tax Incentive Compliance</td>
+<td>Transmission Designs</td>
+<td>Cost-Performance Trade-off</td>
+<td>Thermal Stress Tests</td>
+<td>Thermal Imaging Drones</td>
+</tr>
+<tr>
+<td>PHEV</td>
+<td>Production releases</td>
+<td>Calibration</td>
+<td>OBD Hybrid Compliance</td>
+<td>Production Tuning</td>
+<td>Charge-Depleting Validation</td>
+<td>On-Road Emissions Tests</td>
+<td>Calibration Fleets</td>
+</tr>
+<tr>
+<td>PHEV</td>
+<td>Post-Production releases</td>
+<td>Battery Service</td>
+<td>Warranty Extensions</td>
+<td>Refurbished Batteries</td>
+<td>Usage Pattern Analysis</td>
+<td>HV Component Lifetime Tests</td>
+<td>Dealer Diagnostic Suites</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
